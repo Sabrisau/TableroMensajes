@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import MensajeForm
+from django.shortcuts import get_object_or_404
+from .models import Mensaje
 
 def crear_mensaje(request):
     if request.method == 'POST':
@@ -10,3 +12,18 @@ def crear_mensaje(request):
     else:
         form = MensajeForm()
     return render(request, 'mensajes/crear_mensaje.html', {'form': form})
+
+def ver_mensajes_recibidos(request):
+    mensajes = Mensaje.objects.filter(destinatario=request.user.username)
+    return render(request, 'mensajes/mensajes_recibidos.html', {'mensajes': mensajes})
+
+def ver_mensajes_enviados(request):
+    mensajes = Mensaje.objects.filter(remitente=request.user.username)
+    return render(request, 'mensajes/mensajes_enviados.html', {'mensajes': mensajes})
+
+def eliminar_mensaje(request, id):
+    mensaje = get_object_or_404(Mensaje, id=id)
+    if request.method == 'POST':
+        mensaje.delete()
+        return redirect('ver_mensajes_recibidos')
+    return render(request, 'mensajes/eliminar_mensaje.html', {'mensaje': mensaje})
