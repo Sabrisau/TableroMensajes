@@ -1,0 +1,14 @@
+{% extends "base.html" }
+{% block title %}Ver Mensajes Recibidos{% endblock %}
+
+{% block header %}
+    <h1>Mensajes Recibidos</h1>
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for mensaje in mensajes %}
+            <li>{{ mensaje.remitente }}: {{ mensaje.contenido }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

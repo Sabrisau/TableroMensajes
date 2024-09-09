@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Eliminar Mensajes{% endblock %}
+
+{% block header %}
+    <h1>¿Estás seguro que quieres eliminar este mensaje?</h1>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Remitente: {{ mensaje.remitente }}</p>
+        <p>Mensaje: {{ mensaje.contenido }}</p>
+        <button type="submit">Sí, eliminar</button>
+    </form>
+{% endblock %}
