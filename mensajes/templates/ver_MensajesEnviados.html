@@ -1,4 +1,4 @@
-{% extends "base.html" }
+{% extends "base.html" %}
 {% block title %}Ver Mensajes Enviados{% endblock %}
 
 {% block header %}
@@ -8,7 +8,15 @@
 {% block content %}
     <ul>
         {% for mensaje in mensajes %}
-            <li>{{ mensaje.remitente }}: {{ mensaje.contenido }}</li>
+            <li>
+                Remitente: {{ mensaje.remitente }}<br>
+                Destinatario: {{ mensaje.destinatario }}<br>
+                Asunto: {{ mensaje.asunto }}<br>
+                Contenido: {{ mensaje.contenido }}<br>
+                <a href="{% url 'eliminar_Mensajes' mensaje.id %}">Eliminar</a>
+            </li>
+            {% empty %}
+            <li>No hay mensajes enviados.</li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -1,9 +1,8 @@
-<!-- ver_MensajesRecibidos.html -->
 {% extends "base.html" %}
-{% block title %}Ver Mensajes Recibidos{% endblock %}
+{% block title %}Eliminar Mensaje{% endblock %}
 
 {% block header %}
-    <h1>Mensajes Recibidos</h1>
+    <h1>Selecciona un Mensaje para Eliminar</h1>
 {% endblock %}
 
 {% block content %}
@@ -11,13 +10,11 @@
         {% for mensaje in mensajes %}
             <li>
                 Remitente: {{ mensaje.remitente }}<br>
-                Destinatario: {{ mensaje.destinatario }}<br>
                 Asunto: {{ mensaje.asunto|default:"Sin asunto" }}<br>
+                Destinatario: {{ mensaje.destinatario }}<br>
                 Contenido: {{ mensaje.contenido }}<br>
                 <a href="{% url 'eliminar_Mensajes' mensaje.id %}">Eliminar</a>
             </li>
-            {% empty %}
-            <li>No hay mensajes recibidos.</li>
         {% endfor %}
     </ul>
 {% endblock %}
