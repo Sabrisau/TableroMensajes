@@ -71,6 +71,7 @@ form label {
 }
 
 form input[type="text"],
+
 form textarea {
     width: 100%;
     padding: 10px;
@@ -82,6 +83,7 @@ form textarea {
 }
 
 form input[type="submit"],
+
 form button {
     background-color: #db347a;
     color: #ffffff;
@@ -136,14 +138,23 @@ ul li a:hover {
 }
 
 /* Pie de página */
+.content {
+    margin-bottom: 100px; /* Ajusta según la altura del footer */
+}
+
 footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color: #a11e5b;
     color: #ecf0f1;
     text-align: center;
     padding: 15px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    height: 60px; /* Ajusta la altura */
+}
+
+body {
+    padding-bottom: 60px; /* Igual a la altura del footer */
 }
 
 /* Botones de acción */
@@ -181,4 +192,6 @@ footer {
     background-color: #f7cbdf;
     margin-bottom: 20px;
 }
+
+
 
