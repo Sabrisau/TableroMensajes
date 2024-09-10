@@ -1,9 +1,10 @@
 from django.urls import path
 from mensajes import views
+from .views import CrearMensajeView
 
 urlpatterns = [
     path('', views.home_view, name='home'),
-    path('crear/', views.crear_mensaje_view, name='crear_Mensajes'),
+    path('crear/', CrearMensajeView.as_view(), name='crear_Mensajes'),
     path('recibidos/', views.ver_mensajes_recibidos_view, name='ver_MensajesRecibidos'),
     path('enviados/', views.ver_mensajes_enviados_view, name='ver_MensajesEnviados'),
     path('eliminar/', views.elegir_mensaje_view, name='elegir_mensaje'),

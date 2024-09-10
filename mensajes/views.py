@@ -1,21 +1,21 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
+from django.views import View
 from .models import Mensaje
 
 def home_view(request):
     return render(request, 'home.html')
 
-from django.shortcuts import render, redirect
-from .models import Mensaje
+class CrearMensajeView(View):
+    def get(self, request):
+        return render(request, 'crear_Mensajes.html')
 
-def crear_mensaje_view(request):
-    if request.method == 'POST':
+    def post(self, request):
         destinatario = request.POST.get('destinatario')
         remitente = request.POST.get('remitente')
         asunto = request.POST.get('asunto')
         contenido = request.POST.get('contenido')
 
-        # Verifica que todos los campos estén presentes
         if destinatario and remitente and asunto and contenido:
             nuevo_mensaje = Mensaje(
                 remitente=remitente, 
@@ -24,13 +24,10 @@ def crear_mensaje_view(request):
                 contenido=contenido
             )
             nuevo_mensaje.save()
-            return redirect('ver_MensajesEnviados')  # Asegúrate de usar el nombre correcto en el redirect
+            return redirect('ver_MensajesEnviados')
         else:
             error_message = "Todos los campos son obligatorios."
             return render(request, 'crear_Mensajes.html', {'error_message': error_message})
-
-    # Si no es POST, renderiza el formulario
-    return render(request, 'crear_Mensajes.html')
 
 
 def ver_mensajes_enviados_view(request):
